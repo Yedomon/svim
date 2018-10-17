@@ -41,7 +41,7 @@ def clusters_from_partitions(partitions, options):
         connection_graph.add_nodes_from(range(len(partition_sample)))
         for i1 in range(len(partition_sample)):
             for i2 in range(len(partition_sample)):
-                if i1 != i2:
+                if i1 != i2 and partition_sample[i1].read != partition_sample[i2].read:
                     if options.distance_metric == "gd":
                         if partition_sample[i1].gowda_diday_distance(partition_sample[i2], largest_indel_size) <= options.cluster_max_distance:
                             # Add edge in graph only if two indels are close to each other (distance <= max_delta)
